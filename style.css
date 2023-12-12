@@ -1,0 +1,234 @@
+:root {
+
+    --dark-background-color: #1B262C;
+}
+
+@font-face {
+    font-family: Poppins-logo;
+    src: url(./fonts/Poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: Poppins-navbar;
+    src: url(./fonts/Poppins/Poppins-Light.ttf);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+
+
+}
+
+body {
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--dark-background-color);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 78px;
+    margin-top: 51px;
+    align-items: center;
+
+
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 495px;
+    font-family: Poppins-navbar, sans-serif;
+    color: #FFF;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+button {
+    cursor: pointer;
+    border-style: none;
+}
+
+.login--button {
+    width: 165px;
+    height: 78px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins-navbar, sans-serif;
+    color: #FFF;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background-image: linear-gradient(108deg, #3A5E72 4.95%, #5C93B1 132.43%);
+    box-shadow: 7px 7px 10px 0px rgba(79, 136, 167, 0.30) inset;
+}
+
+
+
+.logo {
+    color: #FFF;
+    font-family: Poppins-logo, sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin-top: 87px;
+
+
+}
+
+h1 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins-logo, sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 65px;
+}
+
+h1>a {
+    background-image: linear-gradient(91deg, #CAECFF 39.76%, #78CFFF 86.12%);
+    /* ponizsze 3 linie tworzą sam napis w danym kolorze a nie tło teego napisu */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 85px;
+    opacity: 1;
+}
+
+.search>input {
+    width: 778px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    padding-left: 30px;
+    align-items: flex-start;
+    border-radius: 12px;
+    background: #24343D;
+    box-shadow: 10px 10px 30px 0px rgba(36, 52, 61, 0.60) inset;
+    border-style: none;
+    color: #FFF;
+    font-family: Poppins-navbar, sans-serif;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 275px;
+    line-height: 65px;
+}
+
+
+section {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 95px;
+    width: 1100px;
+    height: 500px;
+    background-color: #24343D;
+    box-shadow: 10px 9px 70px 0px rgba(36, 53, 62, 0.40);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.section-left {
+    width: 50%;
+    margin-left: 60px;
+}
+
+.name-of-city {
+    margin-top: 50px;
+    color: #FFF;
+    font-family: Poppins-logo, sans-serif;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 65px;
+}
+
+.name-of-city>a {
+    font-family: Poppins-navbar, sans-serif;
+    font-size: 48px;
+    font-weight: 300;
+    margin-left: 25px;
+}
+
+.wind {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #FFF;
+    font-family: Poppins-navbar, sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 65px;
+    margin-top: 21px;
+}
+
+.wind>img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+.wind>a {
+    margin-left: 25px;
+}
+
+.weather-condition {
+    color: #FFF;
+    font-family: Poppins-navbar, sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 65px;
+}
+
+.weather-icon>img {
+    transform: scale(1200%);
+    filter: brightness(0) invert(1);
+
+
+}
+
+.date-and-hours {
+    color: #FFF;
+    font-family: Poppins-navbar, sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 65px;
+    margin-top: 121px;
+}
+
+.section-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
