@@ -4,10 +4,34 @@ const API_KEY_WEATHERAPP = '92dde5e534957dbb06ed47a155d30ad2';
 const API_KEY_GOOGLEMAPS = 'AIzaSyDADIAxXPFEOeOZt1O0F68PSv51ZrgwDvI';
 
 const weatherContainer = document.querySelector('main');
+const inputField = document.querySelector('.search-field');
 
 // PObieranie pogody dla konkretnego miasta:
 
 // Użyj API pogodowego, np. OpenWeatherMap (https://api.openweathermap.org/data/2.5/weather?q={miasto}&appid={twój_klucz_api}), aby pobrać informacje o aktualnej pogodzie. Zadanie polega na wyświetleniu temperatury, opisu pogody i wilgotności dla wybranego miasta.
+
+
+const getYourPosition = async function () {
+    try {
+        const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
+
+        // if (!position.ok)
+        //     throw new Error(`Nie udało się pobrać Twojej lokalizacji.`);
+
+        return position;
+
+
+    } catch (error) {
+        console.error(`wystąpił błąd `, error);
+    }
+}
+getYourPosition()
+    .then(position => {
+
+    })
+    .catch(err => console.log(err));
+
+
 
 
 
@@ -16,8 +40,6 @@ const weatherContainer = document.querySelector('main');
 
 
 //funkcja tworząca zapytanie do API Google Maps która zwraca nam informację o danej miejscowości, funkcja asynchroniczna zwraca nam dane o tej miejscowości 
-
-
 const getPosition = async function (location) {
     try {
         const position = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${API_KEY_GOOGLEMAPS}`);
@@ -25,8 +47,6 @@ const getPosition = async function (location) {
             throw new Error(`Nie udało się pobrać danych o lokalizacji`);
         }
         const dataPosition = await position.json();
-
-        // const resultArrayLat = dataPosition.results?.[0]?.geometry?.location?.lat ?? null
         return dataPosition;
     } catch (error) {
         console.error("Błąd zapytania", error);
@@ -34,9 +54,9 @@ const getPosition = async function (location) {
 
 }
 
+
+//generuje kod html na podstawie danych zwróconych przez funkcję asynchroniczną getWeather();
 const getDataWeather = function (data) {
-
-
     const html = `
     <section>
     <div class="section-left">
@@ -57,15 +77,12 @@ const getDataWeather = function (data) {
 `;
 
     weatherContainer.insertAdjacentHTML('afterend', html);
-    // weatherContainer.style.opacity = 1;
-
-
-
 
 }
 
-const getWeather = async function () {
-    const position = await getPosition('roczyny');
+//funkcja pobiera w argumencie informację o miejscu następnie miejsce jest przekazywane do funkcji asynchronicznej która zwraca nam długość i szerokość geograficzną wyszukanego miejsca a następnie tworzy zapytanie do API OpenWeatherMap i uruchamia funkcje która dodaje kod html do index.html 
+const getWeather = async function (place) {
+    const position = await getPosition(place);
     const lat = position.results?.[0]?.geometry?.location?.lat ?? null
     const lng = position.results?.[0]?.geometry?.location?.lng ?? null
 
@@ -84,8 +101,21 @@ const getWeather = async function () {
 
 }
 
+
+//eventListener do pobierania danych z pola input po naciśnięciu enter + (po naciśnięciu search w późniejszej implementacji)
+inputField.addEventListener('change', function (e) {
+    const place = e.target.value;
+    getWeather(place);
+
+})
+
+
+
+
 // getPosition('roczyny');
 
 // getPositionAsync();
 
-getWeather();
+// getWeather();
+// getYourPosition();
+// console.log(inputField);
