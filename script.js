@@ -5,6 +5,7 @@ const API_KEY_GOOGLEMAPS = 'AIzaSyDADIAxXPFEOeOZt1O0F68PSv51ZrgwDvI';
 
 const weatherContainer = document.querySelector('main');
 const inputField = document.querySelector('.search-field');
+const buttonSearch = document.querySelector('.button-search')
 
 // PObieranie pogody dla konkretnego miasta:
 
@@ -106,8 +107,14 @@ const getWeather = async function (place) {
 inputField.addEventListener('change', function (e) {
     const place = e.target.value;
     getWeather(place);
-
 })
+
+buttonSearch.addEventListener('click', function () {
+    getWeather(inputField.value);
+})
+
+
+
 
 
 

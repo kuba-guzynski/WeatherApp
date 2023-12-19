@@ -1,0 +1,12 @@
+WeatherApp - aplikacja do wyszukiwania informacji pogodowych oraz wyświetlania danych pogodowych.
+
+
+Co uytkownik będzie mógł zrobić:
+
+-Załozyć konto
+- zalogowac się
+-dodać ulubione miejsca do śledzenia pogody
+- dodać informacje które go interesują do widgetu pogodowego
+-zmienić wyświetlanie strony na tryb ciemny lub jasny lub automatyczny (jezeli będzie po zachodzie słońca w jego
+lokalilzacji i będzie tryb automatyczny to zmieni sie tryb na ciemny)
+- moe zmienić tryb wyświetlania pogody na 1 dzień, 3 dni lub 7 dni (jeśli API pozwoli)

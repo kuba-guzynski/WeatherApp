@@ -25,15 +25,14 @@
 }
 
 body {
-    width: 100%;
-    max-width: 1440px;
+    /* width: 100%; */
+    /* max-width: 1440px; */
     margin-left: auto;
     margin-right: auto;
     background-color: var(--dark-background-color);
-    /* background-image: url(./images/background/background1.jpg);
-    background-size: cover; */
-
-
+    background-image: url(./images/background/background-day.jpg);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 /* dodaje efekt przyciemnienia elementu body */
@@ -50,13 +49,39 @@ body {
 } */
 
 nav {
+
+    height: 97px;
+    background-color: rgba(255, 255, 255, 0.80);
+
+
+}
+
+/*DARK COMPONENT*/
+.dark {
+    color: rgba(255, 255, 255, 0.80);
+}
+
+/*LIGHT COMPONENT*/
+
+.light {
+    color: #000000;
+
+}
+
+
+
+.nav-container {
+
+    max-width: 1440px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 78px;
-    margin-top: 51px;
+    align-items: center;
+    padding: 10px;
     align-items: center;
     z-index: 0;
+    margin-left: auto;
+    margin-right: auto;
 
 
 }
@@ -68,7 +93,6 @@ ul {
     justify-content: space-between;
     width: 495px;
     font-family: Poppins-navbar, sans-serif;
-    color: #FFF;
     font-size: 25px;
     font-style: normal;
     font-weight: 300;
@@ -88,7 +112,6 @@ button {
     align-items: center;
     justify-content: center;
     font-family: Poppins-navbar, sans-serif;
-    color: #FFF;
     font-size: 25px;
     font-style: normal;
     font-weight: 500;
@@ -100,7 +123,6 @@ button {
 
 
 .logo {
-    color: #FFF;
     font-family: Poppins-logo, sans-serif;
     font-size: 40px;
     font-style: normal;
@@ -117,7 +139,6 @@ header {
 }
 
 h1 {
-    color: #FFF;
     text-align: center;
     font-family: Poppins-logo, sans-serif;
     font-size: 40px;
@@ -127,12 +148,9 @@ h1 {
 }
 
 h1>a {
-    background-image: linear-gradient(91deg, #CAECFF 39.76%, #78CFFF 86.12%);
-    /* ponizsze 3 linie tworzą sam napis w danym kolorze a nie tło teego napisu */
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 80px;
 }
 
 main {
@@ -142,15 +160,21 @@ main {
     opacity: 1;
 }
 
+.search {
+    position: relative;
+}
+
+
+
 .search>input {
     width: 778px;
-    height: 65px;
+    height: 85px;
     display: flex;
     justify-content: center;
     padding-left: 30px;
     align-items: flex-start;
     border-radius: 12px;
-    background: #24343D;
+    background: rgba(36, 52, 61, 0.80);
     box-shadow: 10px 10px 30px 0px rgba(36, 52, 61, 0.60) inset;
     border-style: none;
     color: #FFF;
@@ -159,6 +183,16 @@ main {
     font-style: normal;
     font-weight: 275px;
     line-height: 65px;
+}
+
+.search>button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: none;
+    top: 10px;
+    right: 24px;
+
 }
 
 
