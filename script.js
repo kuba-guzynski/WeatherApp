@@ -16,8 +16,8 @@ const getYourPosition = async function () {
     try {
         const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
 
-        // if (!position.ok)
-        //     throw new Error(`Nie udało się pobrać Twojej lokalizacji.`);
+        if (!position.ok)
+            throw new Error(`Nie udało się pobrać Twojej lokalizacji.`);
 
         return position;
 
@@ -26,18 +26,18 @@ const getYourPosition = async function () {
         console.error(`wystąpił błąd `, error);
     }
 }
-getYourPosition()
-    .then(position => {
+// getYourPosition()
+//     .then(position => {
 
-    })
-    .catch(err => console.log(err));
-
-
+//     })
+//     .catch(err => console.log(err));
 
 
 
 
 
+
+//-----------------LOCATION-----------------
 
 
 //funkcja tworząca zapytanie do API Google Maps która zwraca nam informację o danej miejscowości, funkcja asynchroniczna zwraca nam dane o tej miejscowości 
@@ -55,9 +55,34 @@ const getPosition = async function (location) {
 
 }
 
+//-----------------TIME-----------------
+
+//funkcja która zwraca dzień 
+
+const createDate = function () {
+    return new Date();
+}
+
+const getNameOfDay = function () {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    const today = createDate()
+    const todayNameOfDay = daysOfWeek[today.getDay()];
+    return todayNameOfDay;
+}
+
+const getTime = function () {
+    const now = createDate()
+    const nowHour = now.getHours();
+    const nowMinutes = now.getMinutes();
+    return `${nowHour}:${nowMinutes}`;
+}
+
+
+
 
 //generuje kod html na podstawie danych zwróconych przez funkcję asynchroniczną getWeather();
-const getDataWeather = function (data) {
+const getDataWeather = function (data, day, time) {
     const html = `
     <section>
     <div class="section-left">
@@ -67,7 +92,7 @@ const getDataWeather = function (data) {
             <a>wind speed: ${data.wind.speed} km/h</a>
         </div>
         <div class="weather-condition">${data.weather?.[0]?.main ?? null}</div>
-        <div class="date-and-hours">Tuesday : 19:52</div>
+        <div class="date-and-hours">${day} : ${time}</div>
     </div>
     <div class="section-right">
         <div class="weather-icon">
@@ -76,9 +101,7 @@ const getDataWeather = function (data) {
     </div>
 </section> 
 `;
-
     weatherContainer.insertAdjacentHTML('afterend', html);
-
 }
 
 //funkcja pobiera w argumencie informację o miejscu następnie miejsce jest przekazywane do funkcji asynchronicznej która zwraca nam długość i szerokość geograficzną wyszukanego miejsca a następnie tworzy zapytanie do API OpenWeatherMap i uruchamia funkcje która dodaje kod html do index.html 
@@ -93,8 +116,16 @@ const getWeather = async function (place) {
             throw new Error(`Nie udało się osiągnąć wyniku ządania`);
         }
         const data = await weather.json();
-        console.log(data);
-        getDataWeather(data)
+
+        //wywołanie funkcji która daje nam nazwe dnia
+        const nameOfDay = getNameOfDay();
+
+        //wywołanie funkcji która daje nam aktualną godzinę 
+
+        const time = getTime();
+
+
+        getDataWeather(data, nameOfDay, time)
     } catch (error) {
         console.error("Błąd podczas pobierania aktualnej pogody ", error);
     }
@@ -126,3 +157,5 @@ buttonSearch.addEventListener('click', function () {
 // getWeather();
 // getYourPosition();
 // console.log(inputField);
+
+
