@@ -6,6 +6,9 @@ const API_KEY_GOOGLEMAPS = 'AIzaSyDADIAxXPFEOeOZt1O0F68PSv51ZrgwDvI';
 const weatherContainer = document.querySelector('main');
 const inputField = document.querySelector('.search-field');
 const buttonSearch = document.querySelector('.button-search')
+const sectionContainer = document.querySelector('section');
+
+
 
 // PObieranie pogody dla konkretnego miasta:
 
@@ -75,7 +78,12 @@ const getTime = function () {
     const now = createDate()
     const nowHour = now.getHours();
     const nowMinutes = now.getMinutes();
-    return `${nowHour}:${nowMinutes}`;
+    if (nowMinutes < 10) {
+        return `${nowHour}:0${nowMinutes}`;
+    }
+    else {
+        return `${nowHour}:${nowMinutes}`;
+    }
 }
 
 
@@ -84,24 +92,30 @@ const getTime = function () {
 //generuje kod html na podstawie danych zwróconych przez funkcję asynchroniczną getWeather();
 const getDataWeather = function (data, day, time) {
     const html = `
-    <section>
+    
     <div class="section-left">
-        <div class="name-of-city">${data.name} <a>${((data.main?.temp ?? null) - 273.15).toFixed(1)}ºC</a></div>
+        <div>
+        <div class="name-of-city">${data.name} <a></br>${((data.main?.temp ?? null) - 273.15).toFixed(1)}ºC</a></div>
         <div class="wind">
             <img src="./images/svgItem/air-icon.svg" alt="wind-icon">
             <a>wind speed: ${data.wind.speed} km/h</a>
         </div>
         <div class="weather-condition">${data.weather?.[0]?.main ?? null}</div>
+        </div>
+        <div>
         <div class="date-and-hours">${day} : ${time}</div>
+    </div>
     </div>
     <div class="section-right">
         <div class="weather-icon">
             <img src="./images/svgItem/${data.weather?.[0]?.icon ?? null}.svg" alt="weather-icon">
         </div>
     </div>
-</section> 
+
 `;
-    weatherContainer.insertAdjacentHTML('afterend', html);
+    sectionContainer.innerHTML = "";
+    sectionContainer.insertAdjacentHTML('afterBegin', html);
+    sectionContainer.classList.remove('hidden');
 }
 
 //funkcja pobiera w argumencie informację o miejscu następnie miejsce jest przekazywane do funkcji asynchronicznej która zwraca nam długość i szerokość geograficzną wyszukanego miejsca a następnie tworzy zapytanie do API OpenWeatherMap i uruchamia funkcje która dodaje kod html do index.html 
